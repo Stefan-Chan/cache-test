@@ -12,10 +12,12 @@ public class RedisController {
     private StringRedisTemplate stringRedisTemplate;
 
     public void setValue(String key, String value, Long expire) {
-        stringRedisTemplate.opsForValue().set(key, value, expire, TimeUnit.SECONDS);
+        String keys = "#test-redis:" + key;
+        stringRedisTemplate.opsForValue().set(keys, value, expire, TimeUnit.SECONDS);
     }
 
     public String getValue(String key) {
-        return stringRedisTemplate.opsForValue().get(key);
+        String keys = "#test-redis:" + key;
+        return stringRedisTemplate.opsForValue().get(keys);
     }
 }
